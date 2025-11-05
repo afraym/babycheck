@@ -1,0 +1,274 @@
+.carousel {
+    height: 75vh; /* mobile: 75vh as requested */
+    max-height: none;
+}
+
+/* Target the carousel used in index.html (#carouselExampleCaptions) */
+/* ensure inner, items and images fill the 50vh and keep cover crop */
+#carouselExampleCaptions,
+#carouselExampleCaptions .carousel-inner,
+#carouselExampleCaptions .carousel-item {
+    height: 75vh;
+}
+
+#carouselExampleCaptions .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: static;
+    margin: 0;
+}
+
+/* move carousel captions up (applies on md+ where captions are visible) */
+@media (min-width: 768px) {
+  #carouselExampleCaptions .carousel-caption {
+    top: 60%;
+    bottom: auto;
+    transform: translateY(0);
+  }
+}
+
+/* previous (unused) selector kept for reference */
+#carouselExampleIndicators .carousel-item img
+ {
+    width: 100vw;
+    height: 79vh;
+    object-fit: cover;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* place indicators at top-center of the carousel */
+#carouselExampleCaptions .carousel-indicators {
+position: absolute;
+    top: 75%;
+    /* bottom: 13vh; */
+    left: 36%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+}
+
+/* indicator button styling */
+#carouselExampleCaptions .carousel-indicators [data-bs-target] {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.6);
+  border: none;
+  transition: transform .15s ease, background-color .15s ease;
+}
+
+/* active indicator */
+#carouselExampleCaptions .carousel-indicators .active {
+  background-color: #ffffff;
+  transform: scale(1.25);
+}
+
+/* global: ensure carousel container is positioned for overlays */
+#carouselExampleCaptions {
+  position: relative;
+  overflow: hidden;
+}
+
+/* dark gradient overlay on left for readable text */
+#carouselExampleCaptions::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 30%, rgba(0,0,0,0.08) 55%, transparent 100%);
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* bottom fade shadow for better contrast with captions/indicators */
+#carouselExampleCaptions::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30%;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.08) 70%, transparent 100%);
+  pointer-events: none;
+  z-index: 9; /* above image overlay (::before) but below captions (z-index:20) */
+}
+
+/* slightly stronger bottom fade on small screens for readability */
+@media (max-width: 767.98px) {
+  #carouselExampleCaptions::after {
+    height: 38%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 45%, transparent 100%);
+  }
+}
+
+/* responsive heights: mobile 75vh, desktop 75vh (keeps same on larger screens) */
+#carouselExampleCaptions,
+#carouselExampleCaptions .carousel-inner,
+#carouselExampleCaptions .carousel-item {
+  height: 75vh;
+}
+
+@media (min-width: 768px) {
+  #carouselExampleCaptions,
+  #carouselExampleCaptions .carousel-inner,
+  #carouselExampleCaptions .carousel-item {
+    height: 75vh;
+  }
+}
+
+/* ensure images cover the area */
+#carouselExampleCaptions .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* captions: left column, above indicators, readable on phones */
+#carouselExampleCaptions .carousel-caption {
+  position: absolute;
+  left: 6%;
+  right: auto;
+  width: 44%;
+  top: 25%;          /* moved down a little (was 18%) */
+  bottom: auto;
+  transform: translateY(0);
+  text-align: left;
+  z-index: 20; /* sit above overlay and indicators */
+  padding: 0;
+  color: #fff;
+}
+
+/* title + description styles */
+#carouselExampleCaptions .carousel-caption h5 {
+  margin: 0 0 0.6rem 0;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  font-size: clamp(1.6rem, 6vw, 4rem); /* scales from mobile -> desktop */
+  text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+#carouselExampleCaptions .carousel-caption p {
+  margin: 0 0 1rem 0;
+  color: rgba(255,255,255,0.95);
+  font-size: clamp(.9rem, 2.4vw, 1.1rem);
+  line-height: 1.4;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.35);
+}
+
+/* make CTA more prominent */
+#carouselExampleCaptions .carousel-caption .btn {
+  padding: .65rem 1.2rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+  font-weight: 700;
+}
+
+/* indicators: centered bottom, larger for touch, visually separated from captions */
+#carouselExampleCaptions .carousel-indicators {
+  position: absolute;
+  transform: translateX(-50%);
+  bottom: 11%;        /* moved up a little (was 3.5%) */
+  top: auto;
+  z-index: 15;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+  width: auto;
+}
+
+/* indicator buttons - touch friendly */
+#carouselExampleCaptions .carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.6);
+  border: none;
+  transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+#carouselExampleCaptions .carousel-indicators .active {
+  background-color: #ffffff;
+  transform: scale(1.4);
+}
+
+/* controls (prev / next): circular translucent buttons */
+#carouselExampleCaptions .carousel-control-prev,
+#carouselExampleCaptions .carousel-control-next {
+  width: 44px;
+  height: 44px;
+  top: auto;
+  bottom: 50%;
+  transform: translateY(0);
+  background: rgba(0,0,0,0.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 16;
+  transition: background .15s ease, transform .12s ease;
+}
+
+#carouselExampleCaptions .carousel-control-prev:hover,
+#carouselExampleCaptions .carousel-control-next:hover {
+  background: rgba(0,0,0,0.55);
+  transform: scale(1.03);
+}
+
+/* center arrow icons inside their circular buttons */
+#carouselExampleCaptions .carousel-control-prev-icon,
+#carouselExampleCaptions .carousel-control-next-icon {
+  filter: invert(1) brightness(2);
+  width: 18px;
+  height: 18px;
+}
+
+/* Mobile tweaks: captions sit a bit lower, full-width with margin, keep above indicators */
+@media (max-width: 767.98px) {
+  #carouselExampleCaptions .carousel-caption {
+    left: 6%;
+    right: 6%;
+    width: auto;
+    bottom: 12%;      /* moved down on mobile a bit (was 16% -> closer to bottom) */
+    top: auto;
+    text-align: left;
+    background: transparent;
+    padding: 0;
+  }
+
+  #carouselExampleCaptions .carousel-indicators {
+    bottom: 5%;       /* moved up slightly on mobile (was 3%) */
+  }
+
+  #carouselExampleCaptions .carousel-control-prev,
+  #carouselExampleCaptions .carousel-control-next {
+    bottom: 10%;
+  }
+}
+
+/* place the header behind overlapping content */
+.header-2 {
+  position: relative;
+  z-index: 1;
+}
+
+/* ensure the overlapping card sits above the header */
+.card.card-body.blur.shadow-blur {
+  position: relative;
+  z-index: 50;
+}
+
+/* keep the navbar on top */
+nav.navbar {
+  z-index: 1050;
+}
