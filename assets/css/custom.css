@@ -256,6 +256,31 @@ position: absolute;
   }
 }
 
+/* Move caption, indicators and controls up on mobile */
+@media (max-width: 767.98px) {
+  /* move caption higher (increase distance from bottom) */
+  #carouselExampleCaptions .carousel-caption {
+    bottom: 31%; /* was ~12-16% — increase to push caption upward */
+    top: auto;
+    left: 6%;
+    right: 6%;
+    width: auto;
+    padding: 0;
+  }
+
+  /* move indicators up a bit so they're closer to the caption */
+  #carouselExampleCaptions .carousel-indicators {
+    bottom: 8%; /* was ~3% — raised to sit above controls and closer to caption */
+    transform: translateX(-50%);
+  }
+
+  /* raise prev/next controls to align with indicators */
+  #carouselExampleCaptions .carousel-control-prev,
+  #carouselExampleCaptions .carousel-control-next {
+    bottom: 12%; /* was ~10% — nudge up slightly */
+  }
+}
+
 /* place the header behind overlapping content */
 .header-2 {
   position: relative;

@@ -15,7 +15,18 @@
   const qs = (s, ctx = document) => Array.from((ctx || document).querySelectorAll(s));
 
   // helper: exclude elements marked with .gsap-exclude or data-gsap="exclude"
-  const isExcluded = (el) => !!el.closest('[data-gsap="exclude"], .gsap-exclude');
+  // treat mobile (max-width: 768px) specially
+  const isMobile = () => window.matchMedia('(max-width: 767.98px)').matches;
+
+  // isExcluded now supports mobile-only exclusion via:
+  //  - class "gsap-exclude" or data-gsap="exclude" (always excluded)
+  //  - class "gsap-exclude-mobile" or data-gsap="mobile-exclude" (excluded only on mobile)
+  const isExcluded = (el) => {
+    if (!el) return false;
+    if (el.closest('[data-gsap="exclude"], .gsap-exclude')) return true; // global exclude
+    if (isMobile() && el.closest('[data-gsap="mobile-exclude"], .gsap-exclude-mobile')) return true; // mobile-only exclude
+    return false;
+  };
 
   // On-scroll reveal using IntersectionObserver + GSAP
   const revealTargets = qs('.animate-on-scroll, .animate-scale, .animate-pop, .card, .info, .page-header')
