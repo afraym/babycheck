@@ -297,3 +297,45 @@ position: absolute;
 nav.navbar {
   z-index: 1050;
 }
+
+/* place prev/next controls adjacent to centered indicators (desktop + mobile) */
+#carouselExampleCaptions .carousel-indicators {
+  bottom: 8%; /* ensure indicators baseline */
+  transform: translateX(-50%);
+}
+
+/* position controls next to the indicators (horizontally centered block) */
+#carouselExampleCaptions .carousel-control-prev,
+#carouselExampleCaptions .carousel-control-next {
+  bottom: 8%;
+  top: auto;
+  width: 44px;
+  height: 44px;
+  background: rgba(0,0,0,0.35);
+  transform: translateY(0);
+  z-index: 16;
+}
+
+/* prev to the left of indicators, next to the right (symmetric offsets) */
+#carouselExampleCaptions .carousel-control-prev {
+  left: calc(50% - 72px); /* adjust gap between indicator center and control */
+  right: auto;
+}
+#carouselExampleCaptions .carousel-control-next {
+  right: calc(48% - 72px);
+  left: auto;
+}
+
+/* small screens: tighten the spacing so controls remain next to indicators */
+@media (max-width: 767.98px) {
+  #carouselExampleCaptions .carousel-indicators { bottom: 10%; }
+  #carouselExampleCaptions .carousel-control-prev { left: calc(45% - 64px); }
+  #carouselExampleCaptions .carousel-control-next { right: calc(45% - 64px); }
+}
+
+/* hover/active tweaks remain */
+#carouselExampleCaptions .carousel-control-prev:hover,
+#carouselExampleCaptions .carousel-control-next:hover {
+  background: rgba(0,0,0,0.55);
+  transform: scale(1.03);
+}
